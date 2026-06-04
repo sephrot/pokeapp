@@ -1,4 +1,4 @@
-import { Pokemon } from '../types/pokemon';
+import type { Pokemon } from '../types/pokemon';
 
 const API_BASE = 'http://localhost:5081/api';
 

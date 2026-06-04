@@ -17,7 +17,7 @@ export function SearchBar({ onSearch, loading }: Props) {
     <form className="search-bar" onSubmit={handleSubmit}>
       <input
         type="text"
-        placeholder="e.g. pikachu, charizard, bulbasaur"
+        placeholder=""
         value={input}
         onChange={(e) => setInput(e.target.value)}
         disabled={loading}

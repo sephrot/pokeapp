@@ -12,7 +12,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=pokemon.db"));
 
-builder.Services.AddHttpClient();
+builder.Services.AddHttpClient<IPokemonService, PokemonService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(10);
+});
 builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 builder.Services.AddScoped<IPokemonService, PokemonService>();
 

@@ -7,5 +7,8 @@ public class CachedPokemon
     public int Weight { get; set; }
     public int Height { get; set; }
     public int BaseExperience { get; set; }
+    public string ImageUrl { get; set; } = string.Empty;
+    public string StatsJson { get; set; } = "[]";
+    public string Description { get; set; } = string.Empty;
     public DateTime CachedAt { get; set; }
 }

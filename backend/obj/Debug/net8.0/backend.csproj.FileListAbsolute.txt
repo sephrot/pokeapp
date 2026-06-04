@@ -132,3 +132,4 @@
 /home/zefrot/pokeapp/backend/obj/Debug/net8.0/backend.pdb
 /home/zefrot/pokeapp/backend/obj/Debug/net8.0/backend.genruntimeconfig.cache
 /home/zefrot/pokeapp/backend/obj/Debug/net8.0/ref/backend.dll
+/home/zefrot/pokeapp/backend/obj/Debug/net8.0/backend.sourcelink.json
