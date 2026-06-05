@@ -31,6 +31,7 @@ public class PokemonService : IPokemonService
                 ImageUrl = cached.ImageUrl,
                 Stats = JsonSerializer.Deserialize<List<PokemonStat>>(cached.StatsJson) ?? new(),
                 Description = cached.Description,
+                Types = JsonSerializer.Deserialize<List<string>>(cached.TypesJson) ?? new(),
                 FromCache = true
             };
         }
@@ -61,6 +62,7 @@ public class PokemonService : IPokemonService
                         ImageUrl = cachedByRealName.ImageUrl,
                         Stats = JsonSerializer.Deserialize<List<PokemonStat>>(cachedByRealName.StatsJson) ?? new(),
                         Description = cachedByRealName.Description,
+                        Types = JsonSerializer.Deserialize<List<string>>(cachedByRealName.TypesJson) ?? new(),
                         FromCache = true
                     };
                 }
@@ -76,6 +78,10 @@ public class PokemonService : IPokemonService
                 Value = s.BaseStat
             }).ToList() ?? new();
 
+            var types = apiPokemon.Types?.Select(t => t.Type?.Name ?? string.Empty)
+                .Where(t => !string.IsNullOrEmpty(t))
+                .ToList() ?? new();
+
             var description = string.Empty;
             try
             {
@@ -88,9 +94,9 @@ public class PokemonService : IPokemonService
                         .Replace("\f", " ").Replace("\n", " ").Replace("\r", " ") ?? string.Empty;
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                // description forblir tom hvis species-kallet feiler
+                Console.WriteLine($"Could not fetch description for '{nameLower}': {ex.Message}");
             }
 
             await _repository.SaveAsync(new CachedPokemon
@@ -101,6 +107,7 @@ public class PokemonService : IPokemonService
                 BaseExperience = apiPokemon.BaseExperience,
                 ImageUrl = imageUrl,
                 StatsJson = JsonSerializer.Serialize(stats),
+                TypesJson = JsonSerializer.Serialize(types),
                 Description = description,
                 CachedAt = DateTime.UtcNow
             });
@@ -113,6 +120,7 @@ public class PokemonService : IPokemonService
                 BaseExperience = apiPokemon.BaseExperience,
                 ImageUrl = imageUrl,
                 Stats = stats,
+                Types = types,
                 Description = description,
                 FromCache = false
             };

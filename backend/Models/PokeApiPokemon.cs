@@ -21,6 +21,21 @@ public class PokeApiPokemon
 
     [JsonPropertyName("stats")]
     public List<PokeApiStat>? Stats { get; set; }
+
+    [JsonPropertyName("types")]
+    public List<PokeApiType>? Types { get; set; }
+}
+
+public class PokeApiType
+{
+    [JsonPropertyName("type")]
+    public PokeApiTypeName? Type { get; set; }
+}
+
+public class PokeApiTypeName
+{
+    [JsonPropertyName("name")]
+    public string Name { get; set; } = string.Empty;
 }
 
 public class PokeApiSprites

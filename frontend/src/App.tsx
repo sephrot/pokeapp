@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { PokemonCard } from './components/PokemonCard';
 import { fetchPokemon } from './services/pokemonApi';
-import { extractDominantColor, applyTheme } from './utils/colorExtractor';
+import { applyTypeTheme } from './utils/typeColors';
 import type { Pokemon } from './types/pokemon';
 import './App.css';
 
@@ -22,10 +22,7 @@ function App() {
       const result = await fetchPokemon(name);
       setPokemon(result);
 
-      if (result.imageUrl) {
-        const [r, g, b] = await extractDominantColor(result.imageUrl);
-        applyTheme(r, g, b);
-      }
+      applyTypeTheme(result.types);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong.');
     } finally {
@@ -54,7 +51,7 @@ function App() {
         </div>
 
         <div className="box result-box">
-          {pokemon && (
+          {pokemon && pokemon.description && (
             <button
               className={`info-btn ${showInfo ? 'info-btn--active' : ''}`}
               onClick={() => setShowInfo(v => !v)}

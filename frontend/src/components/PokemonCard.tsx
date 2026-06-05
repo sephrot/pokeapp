@@ -1,4 +1,5 @@
 import type { Pokemon } from '../types/pokemon';
+import { TYPE_COLORS } from '../utils/typeColors';
 
 const STAT_LABELS: Record<string, string> = {
   hp: 'HP',
@@ -39,6 +40,25 @@ export function PokemonCard({ pokemon }: Props) {
         <span className={`cache-badge ${pokemon.fromCache ? 'cache-badge--hit' : 'cache-badge--fresh'}`}>
           {pokemon.fromCache ? 'From cache' : 'Cached'}
         </span>
+      </div>
+
+      <div className="type-badges">
+        {pokemon.types.map((type) => {
+          const [r, g, b] = TYPE_COLORS[type] ?? [99, 102, 241];
+          return (
+            <span
+              key={type}
+              className="type-badge"
+              style={{
+                background: `rgba(${r}, ${g}, ${b}, 0.2)`,
+                border: `1px solid rgba(${r}, ${g}, ${b}, 0.5)`,
+                color: `rgb(${r}, ${g}, ${b})`,
+              }}
+            >
+              {type}
+            </span>
+          );
+        })}
       </div>
 
       <div className="info-grid">

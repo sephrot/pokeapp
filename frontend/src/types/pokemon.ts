@@ -12,4 +12,5 @@ export interface Pokemon {
   stats: PokemonStat[];
   description: string;
   fromCache: boolean;
+  types: string[];
 }

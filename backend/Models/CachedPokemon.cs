@@ -9,6 +9,7 @@ public class CachedPokemon
     public int BaseExperience { get; set; }
     public string ImageUrl { get; set; } = string.Empty;
     public string StatsJson { get; set; } = "[]";
+    public string TypesJson { get; set; } = "[]";
     public string Description { get; set; } = string.Empty;
     public DateTime CachedAt { get; set; }
 }

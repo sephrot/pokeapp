@@ -10,6 +10,7 @@ public class PokemonResponse
     public List<PokemonStat> Stats { get; set; } = new();
     public string Description { get; set; } = string.Empty;
     public bool FromCache { get; set; }
+    public List<string> Types { get; set; } = new();
 }
 
 public class PokemonStat
