@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 
 interface Props {
   onSearch: (name: string) => void;
@@ -8,7 +8,7 @@ interface Props {
 export function SearchBar({ onSearch, loading }: Props) {
   const [input, setInput] = useState('');
 
-  function handleSubmit(e: FormEvent) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (input.trim()) onSearch(input.trim());
   }

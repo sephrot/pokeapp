@@ -42,14 +42,6 @@ npm run dev
 
 ---
 
-## Antakelser
-
-- Søk fungerer både på navn og ID — PokéAPI støtter begge på samme endepunkt
-- Cache lagres permanent uten utløpstid, da Pokémon-data er statisk og ikke endrer seg
-- Første tilgjengelige engelske Pokédex-beskrivelse brukes
-
----
-
 ## Hva jeg ville lagt til med mer tid
 
 - **Sammenlign to Pokémon** — vise stats side ved side for å sammenligne to Pokémon mot hverandre
